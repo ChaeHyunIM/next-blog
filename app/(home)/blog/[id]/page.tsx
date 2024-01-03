@@ -2,40 +2,42 @@ import React from "react";
 import { IBlog } from "@/lib/types";
 import Image from "next/image";
 import Content from "./components/Content";
+import { blogs } from '@/lib/data'
 
-export async function generateStaticParams() {
-	const { data: blogs } = await fetch(
-		process.env.SITE_URL + "/api/blog?id=*"
-	).then((res) => res.json());
+// export async function generateStaticParams() {
+// 	const { data: blogs } = await fetch(
+// 		process.env.SITE_URL + "/api/blog?id=*"
+// 	).then((res) => res.json());
 
-	return blogs;
-}
+// 	return blogs;
+// }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-	const { data: blog } = (await fetch(
-		process.env.SITE_URL + "/api/blog?id=" + params.id
-	).then((res) => res.json())) as { data: IBlog };
+// export async function generateMetadata({ params }: { params: { id: string } }) {
+// 	const { data: blog } = (await fetch(
+// 		process.env.SITE_URL + "/api/blog?id=" + params.id
+// 	).then((res) => res.json())) as { data: IBlog };
 
-	return {
-		title: blog?.title,
-		authors: {
-			name: "chensokheng",
-		},
-		openGraph: {
-			title: blog?.title,
-			url: "https://dailyblog-demo.vercel.app/blog" + params.id,
-			siteName: "Daily Blog",
-			images: blog?.image_url,
-			type: "website",
-		},
-		keywords: ["daily web coding", "chensokheng", "dailywebcoding"],
-	};
-}
+// 	return {
+// 		title: blog?.title,
+// 		authors: {
+// 			name: "chensokheng",
+// 		},
+// 		openGraph: {
+// 			title: blog?.title,
+// 			url: "https://dailyblog-demo.vercel.app/blog" + params.id,
+// 			siteName: "Daily Blog",
+// 			images: blog?.image_url,
+// 			type: "website",
+// 		},
+// 		keywords: ["daily web coding", "chensokheng", "dailywebcoding"],
+// 	};
+// }
 
 export default async function page({ params }: { params: { id: string } }) {
-	const { data: blog } = (await fetch(
-		process.env.SITE_URL + "/api/blog?id=" + params.id
-	).then((res) => res.json())) as { data: IBlog };
+	// const { data: blog } = (await fetch(
+	// 	process.env.SITE_URL + "/api/blog?id=" + params.id
+	// ).then((res) => res.json())) as { data: IBlog };
+	const blog = blogs.find((blog) => blog.id === params.id);
 
 	if (!blog?.id) {
 		return <h1 className="text-white">Not found</h1>;
@@ -62,7 +64,7 @@ export default async function page({ params }: { params: { id: string } }) {
 					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 				/>
 			</div>
-			<Content blogId={params.id} />
+			<Content blogContent={blog?.content} />
 		</div>
 	);
 }

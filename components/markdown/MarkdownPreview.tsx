@@ -2,8 +2,10 @@ import { icons } from "@/lib/icon";
 import React from "react";
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
+import remarkGfm from "remark-gfm";
 
 import CopyButton from "./CopyButton";
+import HoverUnderLine from "../nav/HoverUnderLine";
 import "highlight.js/styles/atom-one-dark.min.css";
 import { cn } from "@/lib/utils";
 import { PiTerminalThin } from "react-icons/pi";
@@ -19,6 +21,7 @@ export default function MarkdownPreview({
 		<Markdown
 			className={cn("dark:text-gray-200 space-y-8", className)}
 			rehypePlugins={[rehypeHighlight]}
+			remarkPlugins={[remarkGfm]}
 			components={{
 				h1: ({ node, ...props }) => {
 					return <h1 {...props} className="text-3xl font-bold" />;
@@ -39,6 +42,37 @@ export default function MarkdownPreview({
 						/>
 					);
 				},
+				blockquote: ({ node, ...props }) => {
+					return (
+						<blockquote
+							{...props}
+							className="border-l-4 border-green-500 pl-5 p-4 my-5 bg-zinc-700 bg-opacity-40 rounded-md text-lg"
+						/>
+					);
+				},
+				a: ({ node, ...props }) => {
+					return (
+						<div className="display: inline-block">
+						<HoverUnderLine className="bg-green-500 h-[0.2em]">
+						<a
+							className="text-green-500"
+							target="_blank"
+							{...props}
+						/>
+						</HoverUnderLine>
+						</div>
+					);
+				},
+				ul: ({ node, ...props }) => {
+					return <ul {...props} className="list-disc ml-10" />;
+				},
+				li: ({ node, ...props }) => {
+					return <li {...props} className="text-lg" />;
+				},
+				ol: ({ node, ...props }) => {
+					return <ol {...props} className="list-decimal ml-10" />;
+				},
+				
 				code: ({ node, className, children, ...props }) => {
 					const match = /language-(\w+)/.exec(className || "");
 					const id = (Math.floor(Math.random() * 100) + 1).toString();

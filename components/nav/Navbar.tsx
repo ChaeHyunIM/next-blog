@@ -2,21 +2,40 @@
 import React from "react";
 import HoverUnderLine from "./HoverUnderLine";
 import Link from "next/link";
-import LoginForm from "./LoginForm";
-import { useUser } from "@/lib/store/user";
-import Profile from "./Profile";
+import Image from "next/image";
+import profileImage from "@/public/profile.jpeg";
+import { menu } from "@/lib/data";
 
 export default function Navbar() {
-	const user = useUser((state) => state.user);
 
 	return (
 		<nav className="w-full justify-between items-center flex p-5 xl:p-0">
+			<div className="display: flex h-12 items-center gap-x-3">
+			<Image
+					src={profileImage}
+					alt={'chaehyun blog logo'}
+					width={48}
+					height={48}
+					className="rounded-full ring-2 ring-green-500 h-12 w-12"
+				/>
 			<HoverUnderLine>
-				<Link href={"/"} className="font-bold text-2xl">
-					DailyMedia
+				<Link href={"/"} className="font-bold text-3xl">
+					Chaehyun&apos;s log
 				</Link>
 			</HoverUnderLine>
-			{user ? <Profile /> : <LoginForm />}
+			</div>
+			{/* {user ? <Profile /> : <LoginForm />} */}
+			<div className="display: flex h-12 items-center gap-x-3">
+				{menu.map((item) => {
+					return (
+						<HoverUnderLine key={item.id}>
+						<Link href={item.href} className="font-bold text-2xl">
+							{item.title}
+						</Link>
+					</HoverUnderLine>
+					)
+				})}
+			</div>
 		</nav>
 	);
 }

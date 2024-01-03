@@ -24,7 +24,7 @@ import {
 	StarIcon,
 } from "@radix-ui/react-icons";
 import { ReactNode, useState, useTransition } from "react";
-import { IBlogDetial, IBlogForm } from "@/lib/types";
+import { IBlogDetail, IBlogForm } from "@/lib/types";
 import { Switch } from "@/components/ui/switch";
 import { BsSave } from "react-icons/bs";
 import { BlogFormSchema, BlogFormSchemaType } from "../schema";
@@ -33,7 +33,7 @@ export default function BlogForm({
 	onHandleSubmit,
 	defaultBlog,
 }: {
-	defaultBlog: IBlogDetial;
+	defaultBlog: IBlogDetail;
 	onHandleSubmit: (data: BlogFormSchemaType) => void;
 }) {
 	const [isPending, startTransition] = useTransition();

@@ -3,18 +3,18 @@ export type IBlog = {
 	title: string;
 	image_url: string;
 	created_at: string;
-	is_premium: boolean;
+	tag: string[];
 	content: string;
 	is_published: boolean;
 };
 
-export type IBlogDetial = {
+export type IBlogDetail = {
 	created_at: string;
 	id: string;
 	image_url: string;
-	is_premium: boolean;
-	is_published: boolean;
+	tag: string[];
 	title: string;
+	is_published: boolean;
 	blog_content: {
 		blog_id: string;
 		content: string;
