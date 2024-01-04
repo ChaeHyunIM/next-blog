@@ -4,7 +4,7 @@ import HoverUnderLine from "./HoverUnderLine";
 import Link from "next/link";
 import Image from "next/image";
 import profileImage from "@/public/profile.jpeg";
-import { menu } from "@/lib/constants";
+import { MENU, BLOG_TITLE } from "@/lib/constants";
 
 export default function Navbar() {
 
@@ -20,13 +20,12 @@ export default function Navbar() {
 				/>
 			<HoverUnderLine>
 				<Link href={"/"} className="font-bold text-3xl">
-					Chaehyun&apos;s log
+					{BLOG_TITLE}
 				</Link>
 			</HoverUnderLine>
 			</div>
-			{/* {user ? <Profile /> : <LoginForm />} */}
 			<div className="display: flex h-12 items-center gap-x-3">
-				{menu.map((item) => {
+				{MENU.map((item) => {
 					return (
 						<HoverUnderLine key={item.id}>
 						<Link href={item.href} className="font-bold text-2xl">
