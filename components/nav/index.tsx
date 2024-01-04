@@ -9,7 +9,7 @@ import { MENU, BLOG_TITLE } from '@/lib/constants';
 export default function Navbar() {
   return (
     <nav className="w-full justify-between items-center flex p-5 xl:p-0">
-      <div className="display: flex h-12 items-center gap-x-3">
+      <div className="display: flex h-12 items-center gap-x-5">
         <Image
           src={profileImage}
           alt={'chaehyun blog logo'}
