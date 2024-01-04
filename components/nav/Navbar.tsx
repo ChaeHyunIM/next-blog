@@ -4,7 +4,7 @@ import HoverUnderLine from "./HoverUnderLine";
 import Link from "next/link";
 import Image from "next/image";
 import profileImage from "@/public/profile.jpeg";
-import { menu } from "@/lib/data";
+import { menu } from "@/lib/constants";
 
 export default function Navbar() {
 
