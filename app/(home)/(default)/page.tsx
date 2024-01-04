@@ -1,11 +1,9 @@
-import React from "react";
-import Posts from "@/components/posts";
-import { getPostMetadata } from "@/lib/actions/blog";
+import React from 'react';
+import Posts from '@/components/posts';
+import { getPostMetadata } from '@/lib/actions/blog';
 
 export default async function Home() {
-	const blogs = getPostMetadata();
+  const blogs = getPostMetadata();
 
-	return (
-		<Posts blogs={blogs} />
-	);
+  return <Posts blogs={blogs} />;
 }
