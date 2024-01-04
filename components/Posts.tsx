@@ -1,10 +1,10 @@
 import Image from "next/image";
 import HoverUnderLine from "./nav/HoverUnderLine";
 import Link from "next/link";
-import { IBlog } from "@/lib/types";
+import { IBlogMetadata } from "@/lib/types";
 
 interface Props {
-	blogs: IBlog[];
+	blogs: IBlogMetadata[];
 }
 
 export default function Posts({ blogs }: Props) {
