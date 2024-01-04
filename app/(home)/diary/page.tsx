@@ -1,4 +1,4 @@
-import Posts from '@/components/Posts'
+import Posts from '@/components/posts/Posts'
 import { getPostMetadata } from '@/lib/actions/blog'
 
 export default function page () {

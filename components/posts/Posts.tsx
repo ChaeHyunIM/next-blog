@@ -1,20 +1,24 @@
 import Image from "next/image";
-import HoverUnderLine from "./nav/HoverUnderLine";
+import HoverUnderLine from "../nav/HoverUnderLine";
 import Link from "next/link";
 import { IBlogMetadata } from "@/lib/types";
+import "./Posts.scss";
 
 interface Props {
 	blogs: IBlogMetadata[];
 }
 
+
+
 export default function Posts({ blogs }: Props) {
 	return (
-		<div className="w-full grid grid-cols-1 md:grid-cols-3 gap-5 p-5 xl:p-0">
+		<div className="wrap w-full grid grid-cols-1 md:grid-cols-3 gap-5 p-5 xl:p-0">
 			{blogs.map((blog, index) => {
 				return (
 					<Link
 						href={"/blog/" + blog.slug}
-						className="w-full  border rounded-md dark:bg-graident-dark p-5 hover:ring-2 ring-green-500 transition-all cursor-pointer space-y-5 first:lg:col-span-2 first:md:col-span-3"
+						// className="w-full  border rounded-md dark:bg-graident-dark p-5 hover:ring-2 ring-green-500 transition-all cursor-pointer space-y-5 first:lg:col-span-2 first:md:col-span-3"
+						className="w-full border rounded-md dark:bg-graident-dark p-5 cursor-pointer space-y-5 first:lg:col-span-2 first:md:col-span-3"
 						key={index}
 					>
 						<div className="w-full h-72 sm:w-full  md:h-64 xl:h-96  relative">
