@@ -1,5 +1,5 @@
 "use client";
-import MarkdownPreview from "@/components/markdown/MarkdownPreview";
+import MarkdownPreview from "@/components/markdown";
 
 
 

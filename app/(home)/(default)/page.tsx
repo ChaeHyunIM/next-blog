@@ -1,5 +1,5 @@
 import React from "react";
-import Posts from "@/components/posts/Posts";
+import Posts from "@/components/posts";
 import { getPostMetadata } from "@/lib/actions/blog";
 
 export default async function Home() {
