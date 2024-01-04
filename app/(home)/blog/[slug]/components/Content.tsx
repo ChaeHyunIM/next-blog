@@ -4,10 +4,10 @@ import { Database } from "@/lib/types/supabase";
 import { createBrowserClient } from "@supabase/ssr";
 import React, { useEffect, useState, useTransition } from "react";
 import { BlogContentLoading } from "./Skeleton";
-import { IBlog } from "@/lib/types";
+import { IBlogContent } from "@/lib/types";
 // import Checkout from "@/components/stripe/Checkout";
 
-export default function Content({ blogContent }: { blogContent: IBlog['content'] }) {
+export default function Content({ blogContent }: { blogContent: string }) {
 
 	// const [loading, setLoading] = useState(true);
 

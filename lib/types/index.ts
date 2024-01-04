@@ -1,18 +1,18 @@
-export type IBlog = {
-	id: string;
+export type IBlogMetadata = {
 	title: string;
 	image_url: string;
 	created_at: string;
-	tag: string[];
-	content: string;
+	tags: string[];
 	is_published: boolean;
+	slug: string;
 };
 
+export type IBlogContent = string;
 export type IBlogDetail = {
+	slug: string;
 	created_at: string;
-	id: string;
 	image_url: string;
-	tag: string[];
+	tags: string[];
 	title: string;
 	is_published: boolean;
 	blog_content: {
@@ -21,6 +21,10 @@ export type IBlogDetail = {
 		created_at: string;
 	};
 } | null;
+
+export type ITagCount = {
+	[tag: string]: number;
+}
 
 export type IBlogForm = {
 	created_at: string;

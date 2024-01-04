@@ -1,124 +1,158 @@
-"use server";
+// "use server";
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
+import { IBlogMetadata } from '../types';
 
-import { createSupabaseServerClient } from "@/lib/supabase";
-import { IBlog } from "@/lib/types";
-import { revalidatePath, unstable_noStore } from "next/cache";
-import { BlogFormSchemaType } from "../../app/dashboard/blog/schema";
+// import { createSupabaseServerClient } from "@/lib/supabase";
+// import { IBlog } from "@/lib/types";
+// import { revalidatePath, unstable_noStore } from "next/cache";
+// import { BlogFormSchemaType } from "../../app/dashboard/blog/schema";
 
-const DASHBOARD = "/dashboard/blog";
+// const DASHBOARD = "/dashboard/blog";
 
-export async function createBlog(data: {
-	content: string;
-	title: string;
-	image_url: string;
-	is_premium: boolean;
-	is_published: boolean;
-}) {
-	const { ["content"]: excludedKey, ...blog } = data;
+// export async function createBlog(data: {
+// 	content: string;
+// 	title: string;
+// 	image_url: string;
+// 	is_premium: boolean;
+// 	is_published: boolean;
+// }) {
+// 	const { ["content"]: excludedKey, ...blog } = data;
 
-	const supabase = await createSupabaseServerClient();
-	const blogResult = await supabase
-		.from("blog")
-		.insert(blog)
-		.select("id")
-		.single();
+// 	const supabase = await createSupabaseServerClient();
+// 	const blogResult = await supabase
+// 		.from("blog")
+// 		.insert(blog)
+// 		.select("id")
+// 		.single();
 
-	if (blogResult.error?.message && !blogResult.data) {
-		return JSON.stringify(blogResult);
-	} else {
-		const result = await supabase
-			.from("blog_content")
-			.insert({ blog_id: blogResult?.data?.id!, content: data.content });
+// 	if (blogResult.error?.message && !blogResult.data) {
+// 		return JSON.stringify(blogResult);
+// 	} else {
+// 		const result = await supabase
+// 			.from("blog_content")
+// 			.insert({ blog_id: blogResult?.data?.id!, content: data.content });
 
-		revalidatePath(DASHBOARD);
-		return JSON.stringify(result);
-	}
-}
+// 		revalidatePath(DASHBOARD);
+// 		return JSON.stringify(result);
+// 	}
+// }
 
-export async function readBlog() {
-	const supabase = await createSupabaseServerClient();
-	return supabase
-		.from("blog")
-		.select("*")
-		.eq("is_published", true)
-		.order("created_at", { ascending: true });
-}
+// export async function readBlog() {
+// 	const supabase = await createSupabaseServerClient();
+// 	return supabase
+// 		.from("blog")
+// 		.select("*")
+// 		.eq("is_published", true)
+// 		.order("created_at", { ascending: true });
+// }
 
-export async function readBlogAdmin() {
-	// await new Promise((resolve) => setTimeout(resolve, 2000));
+// export async function readBlogAdmin() {
+// 	// await new Promise((resolve) => setTimeout(resolve, 2000));
 
-	const supabase = await createSupabaseServerClient();
-	return supabase
-		.from("blog")
-		.select("*")
-		.order("created_at", { ascending: true });
-}
+// 	const supabase = await createSupabaseServerClient();
+// 	return supabase
+// 		.from("blog")
+// 		.select("*")
+// 		.order("created_at", { ascending: true });
+// }
 
-export async function readBlogById(blogId: string) {
-	const supabase = await createSupabaseServerClient();
-	return supabase.from("blog").select("*").eq("id", blogId).single();
-}
-export async function readBlogIds() {
-	const supabase = await createSupabaseServerClient();
-	return supabase.from("blog").select("id");
-}
+// export async function readBlogById(blogId: string) {
+// 	const supabase = await createSupabaseServerClient();
+// 	return supabase.from("blog").select("*").eq("id", blogId).single();
+// }
+// export async function readBlogIds() {
+// 	const supabase = await createSupabaseServerClient();
+// 	return supabase.from("blog").select("id");
+// }
 
-export async function readBlogDeatailById(blogId: string) {
-	const supabase = await createSupabaseServerClient();
-	return await supabase
-		.from("blog")
-		.select("*,blog_content(*)")
-		.eq("id", blogId)
-		.single();
-}
+// export async function readBlogDeatailById(blogId: string) {
+// 	const supabase = await createSupabaseServerClient();
+// 	return await supabase
+// 		.from("blog")
+// 		.select("*,blog_content(*)")
+// 		.eq("id", blogId)
+// 		.single();
+// }
 
-export async function readBlogContent(blogId: string) {
-	unstable_noStore();
-	const supabase = await createSupabaseServerClient();
-	return await supabase
-		.from("blog_content")
-		.select("content")
-		.eq("blog_id", blogId)
-		.single();
-}
+// export async function readBlogContent(blogId: string) {
+// 	unstable_noStore();
+// 	const supabase = await createSupabaseServerClient();
+// 	return await supabase
+// 		.from("blog_content")
+// 		.select("content")
+// 		.eq("blog_id", blogId)
+// 		.single();
+// }
 
-export async function updateBlogById(blogId: string, data: IBlog) {
-	const supabase = await createSupabaseServerClient();
-	const result = await supabase.from("blog").update(data).eq("id", blogId);
-	revalidatePath(DASHBOARD);
-	revalidatePath("/blog/" + blogId);
-	return JSON.stringify(result);
-}
+// export async function updateBlogById(blogId: string, data: IBlog) {
+// 	const supabase = await createSupabaseServerClient();
+// 	const result = await supabase.from("blog").update(data).eq("id", blogId);
+// 	revalidatePath(DASHBOARD);
+// 	revalidatePath("/blog/" + blogId);
+// 	return JSON.stringify(result);
+// }
 
-export async function updateBlogDetail(
-	blogId: string,
-	data: BlogFormSchemaType
-) {
-	const { ["content"]: excludedKey, ...blog } = data;
+// export async function updateBlogDetail(
+// 	blogId: string,
+// 	data: BlogFormSchemaType
+// ) {
+// 	const { ["content"]: excludedKey, ...blog } = data;
 
-	const supabase = await createSupabaseServerClient();
-	const resultBlog = await supabase
-		.from("blog")
-		.update(blog)
-		.eq("id", blogId);
-	if (resultBlog.error) {
-		return JSON.stringify(resultBlog);
-	} else {
-		const result = await supabase
-			.from("blog_content")
-			.update({ content: data.content })
-			.eq("blog_id", blogId);
-		revalidatePath(DASHBOARD);
-		revalidatePath("/blog/" + blogId);
+// 	const supabase = await createSupabaseServerClient();
+// 	const resultBlog = await supabase
+// 		.from("blog")
+// 		.update(blog)
+// 		.eq("id", blogId);
+// 	if (resultBlog.error) {
+// 		return JSON.stringify(resultBlog);
+// 	} else {
+// 		const result = await supabase
+// 			.from("blog_content")
+// 			.update({ content: data.content })
+// 			.eq("blog_id", blogId);
+// 		revalidatePath(DASHBOARD);
+// 		revalidatePath("/blog/" + blogId);
 
-		return JSON.stringify(result);
-	}
-}
+// 		return JSON.stringify(result);
+// 	}
+// }
 
-export async function deleteBlogById(blogId: string) {
-	const supabase = await createSupabaseServerClient();
-	const result = await supabase.from("blog").delete().eq("id", blogId);
-	revalidatePath(DASHBOARD);
-	revalidatePath("/blog/" + blogId);
-	return JSON.stringify(result);
-}
+// export async function deleteBlogById(blogId: string) {
+// 	const supabase = await createSupabaseServerClient();
+// 	const result = await supabase.from("blog").delete().eq("id", blogId);
+// 	revalidatePath(DASHBOARD);
+// 	revalidatePath("/blog/" + blogId);
+// 	return JSON.stringify(result);
+// }
+
+export const getPostMetadata = (): IBlogMetadata[] => {
+	const folder = path.join(process.cwd(), 'posts');
+	const files = fs.readdirSync(folder);
+	const markdownPosts = files.filter((file) => file.endsWith(".md"));
+
+	// Get gray-matter data from each file.
+	const posts = markdownPosts.map((fileName) => {
+		const fileContents = fs.readFileSync(`${folder}/${fileName}`, "utf8");
+		const matterResult = matter(fileContents);
+		return {
+			slug: fileName.replace(".md", ""),
+			image_url: matterResult.data.image_url as string,
+			created_at: matterResult.data.created_at as string,
+			is_published: matterResult.data.is_published as boolean,
+			title: matterResult.data.title as string,
+			tags: matterResult.data.tags as string[],
+		};
+	});
+
+	return posts;
+};
+
+export const getPostContent = (slug: string) => {
+	const folder = 'posts/';
+	const file = `${folder}${slug}.md`;
+	const content = fs.readFileSync(file, 'utf8');
+	const matterResult = matter(content);
+	return matterResult.content;
+};
