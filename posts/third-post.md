@@ -1,9 +1,8 @@
 ---
-slug: "6"
-title: "Unleashing Creativity: The Surprising Benefits of Doodling"
-image_url: "https://images.unsplash.com/photo-1700316740839-f5afe22536e4?q=80&w=3732&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-created_at: "2023-10-05"
-tags: ["Hello", "React"]
+title: 'Unleashing Creativity: The Surprising Benefits of Doodling'
+image_url: 'https://images.unsplash.com/photo-1700316740839-f5afe22536e4?q=80&w=3732&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+created_at: '2023-10-05'
+tags: ['Hello', 'React']
 is_published: false
 ---
 

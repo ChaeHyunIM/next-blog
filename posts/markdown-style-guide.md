@@ -1,10 +1,9 @@
 ---
-slug: "2"
-title: "Exploring the Unknown: A Random Blog Journey"
-image_url: "https://images.unsplash.com/photo-1700130862148-8bea5f545bfe?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-created_at: "2023-06-22"
+title: 'Exploring the Unknown: A Random Blog Journey'
+image_url: 'https://images.unsplash.com/photo-1700130862148-8bea5f545bfe?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+created_at: '2023-06-22'
 is_published: false
-tags: ["React", "Next.js"]
+tags: ['React', 'Next.js']
 ---
 
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
@@ -101,7 +100,7 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 
 ````markdown
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -117,7 +116,7 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 Output
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
