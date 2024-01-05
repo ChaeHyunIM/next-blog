@@ -9,6 +9,8 @@ interface Props {
 }
 
 export default function Posts({ blogs }: Props) {
+  if (!blogs.length) return <div className="w-full h-full flex justify-center items-center">No posts</div>;
+
   return (
     <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-5 p-5 xl:p-0">
       {blogs.map((blog, index) => {
@@ -30,15 +32,17 @@ export default function Posts({ blogs }: Props) {
             </div>
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                {blog.tags.map((tag, index) => {
-                  return (
-                    <Link href={`/tag/${tag}`} key={index} className="text-sm dark:text-gray-200">
-                      <HoverUnderLine key={index} className="bg-green-500 h-[0.1em]">
-                        {tag}
-                      </HoverUnderLine>
-                    </Link>
-                  );
-                })}
+                {blog.tags.length
+                  ? blog.tags.map((tag, index) => {
+                      return (
+                        <Link href={`/tag/${tag}`} key={index} className="text-sm dark:text-gray-200">
+                          <HoverUnderLine key={index} className="bg-green-500 h-[0.1em]">
+                            {tag}
+                          </HoverUnderLine>
+                        </Link>
+                      );
+                    })
+                  : null}
               </div>
               <p className="text-sm dark:text-gray-400">{new Date(blog.created_at).toDateString()}</p>
               <h1 className="text-xl font-bold dark:text-gray-300">{blog.title}</h1>
