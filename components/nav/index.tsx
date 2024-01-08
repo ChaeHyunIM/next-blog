@@ -4,32 +4,21 @@ import HoverUnderLine from './HoverUnderLine';
 import Link from 'next/link';
 import Image from 'next/image';
 import picture from '@/public/images/cute_astronaut.png';
-import { MENU, BLOG_TITLE, TITLE_FOR_SLUG_OBJ } from '@/lib/constants';
+import { MENU } from '@/lib/constants';
 import { usePathname } from 'next/navigation';
 import { motion, useScroll } from 'framer-motion';
-import useScrollPosition from '@/hooks/useScrollPosition';
-
-type Props = {
-  isBlog?: boolean;
-};
+import NavbarTitle from './NavbarTitle';
 
 export default function Navbar() {
   const pathname = usePathname();
   const slug = pathname.split('/')[2];
   const { scrollYProgress } = useScroll();
-  const scrollPosition = useScrollPosition();
+
+  const isBlog = pathname.includes('/blog');
 
   const motionDivStyle = {
     scaleX: scrollYProgress,
     transformOrigin: '0%',
-  };
-  const isBlog = pathname.includes('/blog');
-
-  const getNavTitle = () => {
-    if (!isBlog) return BLOG_TITLE;
-    if (scrollPosition < 190) return BLOG_TITLE;
-
-    return TITLE_FOR_SLUG_OBJ[slug] || BLOG_TITLE;
   };
 
   return (
@@ -43,11 +32,7 @@ export default function Navbar() {
             height={48}
             className="rounded-full ring-2 ring-green-500"
           />
-          <HoverUnderLine>
-            <Link href={'/'} className="font-bold text-2xl">
-              {getNavTitle()}
-            </Link>
-          </HoverUnderLine>
+          <NavbarTitle isBlog={isBlog} slug={slug} />
         </div>
         <div className="display: flex h-12 items-center gap-x-3">
           {MENU.map(item => {
