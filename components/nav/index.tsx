@@ -4,7 +4,7 @@ import HoverUnderLine from './HoverUnderLine';
 import Link from 'next/link';
 import Image from 'next/image';
 import picture from '@/public/images/cute_astronaut.png';
-import { MENU, BLOG_TITLE } from '@/lib/constants';
+import { MENU, BLOG_TITLE, TITLE_FOR_SLUG_OBJ } from '@/lib/constants';
 import { usePathname } from 'next/navigation';
 import { motion, useScroll } from 'framer-motion';
 import useScrollPosition from '@/hooks/useScrollPosition';
@@ -28,7 +28,8 @@ export default function Navbar() {
   const getNavTitle = () => {
     if (!isBlog) return BLOG_TITLE;
     if (scrollPosition < 190) return BLOG_TITLE;
-    return slug;
+
+    return TITLE_FOR_SLUG_OBJ[slug] || BLOG_TITLE;
   };
 
   return (

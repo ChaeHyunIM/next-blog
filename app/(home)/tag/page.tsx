@@ -1,9 +1,9 @@
-import { getPostMetadata, getTagCount } from '@/lib/actions/blog';
+import { getPostsMetadata, getTagCount } from '@/lib/actions/blog';
 import Link from 'next/link';
 import './page.scss';
 
 export default function page() {
-  const posts = getPostMetadata();
+  const posts = getPostsMetadata();
   const tagCount = getTagCount(posts);
   const tagCountArr = Object.entries(tagCount);
 

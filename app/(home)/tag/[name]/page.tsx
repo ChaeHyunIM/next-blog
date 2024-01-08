@@ -1,13 +1,13 @@
 import Posts from '@/components/posts';
-import { getPostMetadata } from '@/lib/actions/blog';
+import { getPostsMetadata } from '@/lib/actions/blog';
 
 export async function generateStaticParams() {
-  const postMetadata = getPostMetadata();
+  const postMetadata = getPostsMetadata();
   return postMetadata.flatMap(post => post.tags).filter((tag, index, self) => self.indexOf(tag) === index);
 }
 
 export default function page({ params }: { params: { name: string } }) {
-  const posts = getPostMetadata();
+  const posts = getPostsMetadata();
   const postsFilteredByTagName = posts.filter(post => post.tags.includes(params.name));
 
   return <Posts blogs={postsFilteredByTagName} />;

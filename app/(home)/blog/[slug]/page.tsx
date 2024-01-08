@@ -1,17 +1,17 @@
 import React from 'react';
 import Image from 'next/image';
 import Content from './components/Content';
-import { getPostContent, getPostMetadata } from '@/lib/actions/blog';
+import { getPostContent, getPostsMetadata } from '@/lib/actions/blog';
 
 export const generateStaticParams = async () => {
-  const posts = getPostMetadata();
+  const posts = getPostsMetadata();
   return posts.map(post => ({
     slug: post.slug,
   }));
 };
 
 export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
-  const postsMetadata = getPostMetadata();
+  const postsMetadata = getPostsMetadata();
   const post = postsMetadata.find(post => post.slug === params.slug);
 
   return {
@@ -32,7 +32,7 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 
 export default async function page({ params }: { params: { slug: string } }) {
   const { slug = '' } = params;
-  const postsMetadata = getPostMetadata();
+  const postsMetadata = getPostsMetadata();
   const postMetadata = postsMetadata.find(post => post.slug === slug);
   const postContent = getPostContent(slug);
 

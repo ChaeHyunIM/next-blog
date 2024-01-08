@@ -4,7 +4,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { IBlogMetadata } from '../types';
 
-export const getPostMetadata = (): IBlogMetadata[] => {
+export const getPostsMetadata = (): IBlogMetadata[] => {
   const folder = path.join(process.cwd(), 'posts');
   const files = fs.readdirSync(folder);
   const markdownPosts = files.filter(file => file.endsWith('.md'));
@@ -22,6 +22,14 @@ export const getPostMetadata = (): IBlogMetadata[] => {
   });
 
   return posts;
+};
+
+export const getPostTitleForSlug = (slug: string) => {
+  const folder = path.join(process.cwd(), 'posts');
+  const file = `${folder}/${slug}.md`;
+  const post = fs.readFileSync(file, 'utf8');
+  const matterResult = matter(post);
+  return matterResult.data.title;
 };
 
 export const getPostContent = (slug: string) => {
