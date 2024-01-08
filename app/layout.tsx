@@ -49,10 +49,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={cn('antialiased dark:bg-[#09090B]', inter.className)}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <div className="max-w-7xl mx-auto lg:py-6 space-y-6 p-5 lg:p-0">
-            <header className="w-full sticky top-0 z-10 bg-black bg-border-b-2">
+            <header className="sticky top-0 z-10 bg-black">
               <Navbar />
             </header>
-            <main>{children}</main>
+            <main className="px-1">{children}</main>
           </div>
         </ThemeProvider>
         <Toaster />
