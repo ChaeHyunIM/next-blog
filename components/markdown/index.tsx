@@ -26,6 +26,9 @@ export default function MarkdownPreview({ content, className = 'sm:p-10' }: { co
         h3: ({ node, ...props }) => {
           return <h1 {...props} className="text-xl font-bold mt-10 mb-10" />;
         },
+        p: ({ node, ...props }) => {
+          return <p {...props} className="text-lg leading-8" />;
+        },
         blockquote: ({ node, ...props }) => {
           return (
             <blockquote
