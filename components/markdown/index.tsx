@@ -88,7 +88,7 @@ export default function MarkdownPreview({ content, className = 'sm:p-10' }: { co
           } else {
             return (
               // TODO: convert to code block
-              <code className="text-lg break-words bg-zinc-700 px-1 rounded-sm" {...props}>
+              <code className="text-lg break-words bg-zinc-700 px-1 rounded-sm text-green-400" {...props}>
                 {children}
               </code>
             );

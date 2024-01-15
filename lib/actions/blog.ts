@@ -21,7 +21,7 @@ export const getPostsMetadata = (): IBlogMetadata[] => {
     };
   });
 
-  return posts;
+  return posts.filter(post => post.is_published);
 };
 
 export const getPostTitleForSlug = (slug: string) => {

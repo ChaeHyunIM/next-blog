@@ -31,7 +31,7 @@ type TitleSlugObj = {
 
 export const TITLE_FOR_SLUG_OBJ: TitleSlugObj = {
   'goodbye-2023': '안녕, 2023년',
-  'look-back-2022': 'Look Back',
+  'look-back': 'Look Back',
   'variable-hoisting': '변수와 호이스팅',
   'wecode-memoir': '위코드를 마치며...',
 };
