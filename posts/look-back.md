@@ -131,7 +131,7 @@ CSS작업을 할 떄 마다 프론트를 하는 것을 후회한다.😂😂 하
 
 ### PAPRIKAN IN FINLAND
 
-![](/images/look-back/finland.jpg)
+![](/images/look-back/finland.JPG)
 
 ### PAPRIKAN CHRISTMAS PARTY
 
