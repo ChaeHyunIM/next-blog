@@ -21,7 +21,11 @@ export const getPostsMetadata = (): IBlogMetadata[] => {
     };
   });
 
-  return posts.filter(post => post.is_published);
+  return posts
+    .filter(post => post.is_published)
+    .sort((a, b) => {
+      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+    });
 };
 
 export const getPostTitleForSlug = (slug: string) => {
